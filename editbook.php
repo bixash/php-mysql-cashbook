@@ -9,11 +9,12 @@ $user_data = check_login($con);
 
 $otherMode = $otherType = "";
 $errDate = $errAmount = $errMode = $errType = $errCategory = $errInfo = "";
+
 $tid = $_GET['update_id'];
+$bid = $_SESSION['book_id'];
 
 
 $query = "SELECT * FROM `transaction` where tid = $tid";
-
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $result = mysqli_query($con, $query);
 
     if ($result) {
-        header("Location: dashboard.php");
+        header("Location: dashboard.php?book_id=$bid");
     } else
         $errInfo = "Error occurred!!";
 
@@ -134,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
         <button type="submit" name="update">Save</button>
+        <button><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
         <br> <br>
 
     </form>

@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if($user_data['password'] === $password){
                 $_SESSION['id'] = $user_data['uid'];
-                header("Location: dashboard.php");
+                header("Location: dashbook.php");
                 die;
             }
         }

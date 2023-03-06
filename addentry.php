@@ -9,6 +9,8 @@ $user_data = check_login($con);
 
 $uid = $_SESSION['id'];
 
+$bid = $_SESSION['book_id'];
+
 $type = $_GET['cash'];
 
 $errDate = $errMode = $errAmount = $errInfo = "";
@@ -43,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if ($error == 0) {
 
-        $query = "insert into transaction (uid, remarks, amount, category, date, mode, type) 
-        values ('$uid','$remarks','$amount', '$category','$date','$mode','$type')";
+        $query = "insert into transaction (book_id, remarks, amount, category, date, mode, type) 
+        values ('$bid','$remarks','$amount', '$category','$date','$mode','$type')";
 
         mysqli_query($con, $query);
 
-        header("Location: dashboard.php");
+        header("Location: dashboard.php?book_id=$bid");
         die("Book successfully added!");
     } else
         $errInfo = "Please enter valid info!!";
@@ -84,13 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <input type="text" name="remarks">
         <br><br>
 
-        <!-- <label>Category:</label>
-        <select name="category">
-            <option value="Salary">Salary</option>
-            <option value="Food">Food</option>
-            <option value="Rent">Rent</option>
-            <option value="Bonus">Bonus</option>
-        </select> -->
 
         <label>Category:</label>
         <select name="category">
@@ -115,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <br><br>
 
         <button type="submit">Save</button>
-        <button><a href="dashboard.php">Cancel</a></button>
+        <button><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
         <br><br>
 
     </form>

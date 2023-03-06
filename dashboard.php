@@ -10,9 +10,12 @@ $user_data = check_login($con);
 $uid = $user_data['uid'];
 $name = $user_data['name'];
 
+$book_id = $_GET['book_id'];
+$_SESSION['book_id'] = $book_id;
+
 $errInfo = "";
 
-$query = "SELECT * FROM `transaction` where `uid` = $uid";
+$query = "SELECT * FROM `transaction` where `book_id` = $book_id";
 $result = mysqli_query($con, $query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -74,7 +77,7 @@ if (mysqli_num_rows($result) > 0) {
     <label class="error"><?php echo $errInfo; ?></label>
     <form action="" method="post">
 
-        <button><a href="addbook.php">Add new book</a></button>
+        
 
         <div>
             <label name="totalCashIn">Cash In: <?php echo $calCashIn; ?></label>
@@ -115,7 +118,7 @@ if (mysqli_num_rows($result) > 0) {
             <tbody>
             
                 <?php
-                $query = "SELECT * FROM `transaction` WHERE `uid` = $uid ORDER BY `transaction`.`date` DESC";
+                $query = "SELECT * FROM `transaction` WHERE `book_id` = $book_id ORDER BY `transaction`.`date` DESC";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0) {
