@@ -41,7 +41,6 @@ if($mode == "Cash"){
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-
     $type = $_POST['type'];
     $date = $_POST['date'];
     $amount = $_POST['amount'];
@@ -112,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (mysqli_num_rows($result) > 0) {
                 while ($optionData = mysqli_fetch_assoc($result)) {
                     $option = $optionData['category'];
-                    if($category != $option)
+                    if($category != $option && $option != "")
                         echo '<option value="'.$option.'"> '.$option.' </option>';
 
                 }

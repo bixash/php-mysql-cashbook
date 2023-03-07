@@ -5,43 +5,27 @@ session_start();
 include "config.php";
 include "session.php";
 
-$user_data = check_login($con);
 
+$user_data = check_login($con);
 $uid = $user_data['uid'];
-$name = $user_data['name'];
+
+$errInfo = "";
+
 
 $book_id = $_GET['book_id'];
 $_SESSION['book_id'] = $book_id;
 
-$errInfo = "";
 
-$query = "SELECT * FROM `transaction` where `book_id` = $book_id";
+$query = "SELECT * FROM `books` where `book_id` = $book_id";
 $result = mysqli_query($con, $query);
-
-if (mysqli_num_rows($result) > 0) {
-    $calCashOut= $calCashIn =  $calTotal= 0;
-    while ($row = mysqli_fetch_assoc($result)) {
-
-        $calAmount = $row['amount'];
-        $calType = $row['type'];
-
-        if($calType =="out")
-        {   
-            $calCashOut= $calCashOut + $calAmount;
-            
-        }
-        
-        if($calType =="in")
-        {   
-            $calCashIn= $calCashIn + $calAmount;
-        }
-    }
-    $calTotal = $calCashIn - $calCashOut;
-} else {
-    $calCashOut= $calCashIn =  $calTotal= 0;
-}
+$row = mysqli_fetch_assoc($result);
+$bname = $row['bname'];
 
 
+$calcuate_array = calculate_total($con, $book_id);
+$calCashIn = $calcuate_array[2];
+$calCashOut = $calcuate_array[1];
+$calTotal = $calcuate_array[0];
 
 
 ?>
@@ -70,15 +54,14 @@ if (mysqli_num_rows($result) > 0) {
 <body>
     
     <div>
-        <h1><?php echo $name; ?>'s Transaction</h1>
+        <h1><?php echo $bname; ?></h1><button><a href="delbook.php?book_id=<?php echo $book_id; ?>">Delete</a></button>
+        <button><a href="dashbook.php">Back</a></button>
         <button><a href="logout.php">Logout</a></button>
     </div>
     
     <label class="error"><?php echo $errInfo; ?></label>
     <form action="" method="post">
-
         
-
         <div>
             <label name="totalCashIn">Cash In: <?php echo $calCashIn; ?></label>
             <br>
@@ -114,7 +97,6 @@ if (mysqli_num_rows($result) > 0) {
 
             ?>
 
-
             <tbody>
             
                 <?php
@@ -139,9 +121,8 @@ if (mysqli_num_rows($result) > 0) {
                             <td>' . $category . '</td>
                             <td>' . $mode . '</td>
                             <td>' . $type . '</td>
-                            <td><button><a href="editbook.php?update_id=' . $tid . '">Edit</a></button></td>
-                            
-                            <td><button><a href="delbook.php?delete_id=' . $tid . '"> Delete </a></button></td>
+                            <td><button><a href="editentry.php?update_id=' . $tid . '">Edit</a></button></td>
+                            <td><button><a href="delentry.php?delete_id=' . $tid . '"> Delete </a></button></td>
                                                                   
                         <tr>';
                     }

@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
 
         mysqli_query($con, $query);
+        header("Location: dashbook.php");
     } catch (Exception) {
 
         $errInfo == "error occurred, book can't be added";
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <input type="text" name="bname" required />
 
         <button type="submit" name="addbook">Save</button>
-
+        <button><a href="dashbook.php">Cancel</a></button>
     </form>
 
 </body>

@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         <label>Category:</label>
         <select name="category">
-            <option value="" selected disabled>Select Category</option>
+            <option value="None" selected hidden>Select any</option> //disabled
             <option value="Personal">Personal</option>
             <option value="Salary">Salary</option>
             <option value="Food">Food</option>

@@ -11,7 +11,8 @@ $uid = $user_data['uid'];
 $name = $user_data['name'];
 
 $errInfo = "";
-$calTotal = 0;
+
+
 
 ?>
 
@@ -49,6 +50,9 @@ $calTotal = 0;
                     $book_id = $row['book_id'];
                     $bname = $row['bname'];
 
+                    $calcuate_array = calculate_total($con, $book_id);
+                    $calTotal = $calcuate_array[0];
+                    
                     echo '
                 <div class="btnBooks">
                     <button>

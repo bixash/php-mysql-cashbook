@@ -17,10 +17,9 @@ $errInfo = $errEmail = $errPassword = "";
 
 if (isset($_POST['signup'])) {
     header("Location: register.php");
-    
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -30,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error++;
     }
 
-    if(empty($password)){
+    if (empty($password)) {
         $errPassword = "Password required!";
         $error++;
     }
@@ -41,23 +40,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = mysqli_query($con, $query);
 
-        if($result && mysqli_num_rows($result)>0)
-        {
+        if ($result && mysqli_num_rows($result) > 0) {
             $user_data = mysqli_fetch_assoc($result);
-            
-            if($user_data['password'] === $password){
+
+            if ($user_data['password'] === $password) {
                 $_SESSION['id'] = $user_data['uid'];
                 header("Location: dashbook.php");
                 die;
             }
-        }
-        else
-        {
+        } else {
             $errInfo = "Invalid email or password!";
         }
-
     }
-
 }
 ?>
 
@@ -75,29 +69,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    
-    <h1>Login</h1>
+    <h1>CashBook<br><br>Track Income & Expenses</h1>
 
-    
+    <p>
+        CashBook is a digital record-keeping app using which you can add entries, segregate records and find overall balance instantly.
+    </p>
+
+    <ul>
+        <li>Real-time Calculations</li>
+        <li> Group Cashbooks</li>
+        <li> Multiple Books</li>
+        <li>PDF and Excel Reports</li>
+    </ul>
+
+    <h2>Log In & Register</h2>
+
+
     <label class="error"><?php echo $errInfo; ?></label>
-    
+
     <form action="" method="post">
 
+
+        <label>Email:</label>
+        <input type="email" name="email">
+        <span class="error"><?php echo $errEmail; ?></span>
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password">
+        <span class="error"><?php echo $errPassword; ?></span>
+        <br><br>
+
+        <small>By clicking Verify, you are indicating that you accept our Terms of Service and Privacy Policy. <br>An SMS may be sent. Message & data rates may apply.</small>
         
-            <label>Email:</label>
-            <input type="email" name="email">
-            <span class="error"><?php echo $errEmail; ?></span>
-            <br><br>
-
-            <label>Password:</label>
-            <input type="password" name="password">
-            <span class="error"><?php echo $errPassword; ?></span>
-            <br><br>
-
+        <div>
             <button type="submit" name="login">Login</button>
-            <button type="submit" name="signup" >Sign up</button>
-            <br><br>
-        
+            <button type="submit" name="signup">Sign up</button>
+        </div>
+        <br><br>
+
 
     </form>
 
