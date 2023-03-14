@@ -59,61 +59,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/style.css">
+    <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS.">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="custom.css">
     <link rel="stylesheet" href="assets/style.css">
     <title>Login</title>
 
 </head>
 
 <body>
-    <h1>CashBook<br><br>Track Income & Expenses</h1>
-
-    <p>
-        CashBook is a digital record-keeping app using which you can add entries, segregate records and find overall balance instantly.
-    </p>
-
-    <!-- <ul>
-        <li>Real-time Calculations</li>
-        <li> Group Cashbooks</li>
-        <li> Multiple Books</li>
-        <li>PDF and Excel Reports</li>
-    </ul> -->
-
-    <h2>Log In & Register</h2>
+    <!-- <hgroup>
+            <h1>CashBook</h1>
+            <h2>Track Income & Expenses</h2>
+          </hgroup>
+         -->
 
 
-    <label class="error"><?php echo $errInfo; ?></label>
 
-    <form action="" method="post">
+    <main class="container">
+        <article class="grid">
+            <div>
+                <hgroup>
+                    <h1>Sign in</h1>
+                    <h2>A minimalist layout for Login pages</h2>
+                </hgroup>
+                <form action="" method="post">
+                    <label class="error"><?php echo $errInfo; ?></label>
+                    <label>Username or email <span class="error"><?php echo $errEmail; ?></span></label>
+                    <input type="text" name="email" placeholder="Email" aria-label="Login" autocomplete="nickname" required>
+                    <span class="error"><?php echo $errPassword; ?></span>
+                    <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" required>
+                    <fieldset>
+                        <label for="remember">
+                            <input type="checkbox" role="switch" id="remember" name="remember">
+                            Remember me
+                        </label>
+                    </fieldset>
+
+                    <button type="submit" name="login" class="contrast">Login</button>
+
+                </form>
+                <div class="container">
+                    <small>Don't have an account?</small>
+                    &nbsp;  &nbsp;
+                    <a href="register.php" role="button" class="outline">Create new account</a>
+                </div>
+            </div>
+
+            <div></div>
+        </article>
+    </main><!-- ./ Main -->
 
 
-        <label>Email:</label>
-        <input type="email" name="email">
-        <span class="error"><?php echo $errEmail; ?></span>
-        <br><br>
-
-        <label>Password:</label>
-        <input type="password" name="password">
-        <span class="error"><?php echo $errPassword; ?></span>
-        <br><br>
-
-        <small>By clicking Verify, you are indicating that you accept our Terms of Service and Privacy Policy. <br>An SMS may be sent. Message & data rates may apply.</small>
-        
-        <div>
-            <button type="submit" name="login">Login</button>
-            <button type="submit" name="signup">Sign up</button>
-        </div>
-        <br><br>
-
-        
-
-    </form>
 
 </body>
+
+<script>
+    function gotosignup() {
+        location.href = "register.php";
+    }
+</script>
 
 </html>

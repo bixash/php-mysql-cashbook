@@ -5,11 +5,16 @@ include "config.php";
 $errInfo = $errEmail = $errName = $errPassword = "";
 $error = 0;
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
 
     $name = $_POST["name"];
     $email = $_POST['email'];
     $password = $_POST['password'];
+
     // $phone = $_POST['phone'];
 
     if (empty($name)) {
@@ -20,10 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errEmail = "Email is required!";
         $error++;
     }
-    // if (empty($phone)) {
-    //     $errPhone = "Phone is required!";
-    //     // $error++;
-    // }
+
     if (empty($password)) {
         $errPassword = "Password is required!";
         $error++;
@@ -48,42 +50,99 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<html lang="en">
+
+<!doctype html>
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up</title>
     <link rel="stylesheet" href="assets/style.css">
-    <title>Register</title>
+    <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS.">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="custom.css">
 </head>
 
 <body>
 
-    <h1>Register</h1>
+    <!-- Nav -->
+
+    <!-- ./ Nav -->
+
+    <!-- Main -->
+    <main class="container">
+        <article class="grid">
+            <div>
+                <hgroup>
+                    <h1>Sign Up</h1>
+                    <h2>A minimalist layout for Login pages</h2>
+                </hgroup>
+                <label class="error"><?php echo $errInfo; ?></label>
+                <form action="" method="post">
+
+                    <!-- <input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="nickname" required> <span class="error">* <?php echo $errName; ?></span>
+                    <input type="text" name="email" placeholder="Email" aria-label="Email" autocomplete="nickname" required> <span class="error">* <?php echo $errEmail; ?></span>
+                    <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" required> -->
+                    <!-- Grid -->
 
 
-    <label class="error"><?php echo $errInfo; ?></label>
-    <form action="" method="post">
+                    <!-- Markup example 1: input is inside label -->
+                    <label for="name">
+                        Name <span class="error"><?php echo $errName; ?></span>
+                        <input type="text" id="name" name="name" placeholder="Full name" required>
+                    </label>
 
 
-        <label>Name: </label>
-        <input type="text" name="name">
-        <span class="error">* <?php echo $errName; ?></span>
-        <br><br>
+                    <!-- Markup example 2: input is after label -->
+                    <label for="email">Email <span class="error"><?php echo $errEmail; ?></span></label>
+                    <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
 
-        <label>Email:</label>
-        <input type="email" name="email">
-        <span class="error">* <?php echo $errEmail; ?></span>
-        <br><br>
+                    <label for="Password">Password <span class="error"><?php echo $errPassword; ?></span></label>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <fieldset>
+                        <label for="terms">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            I agree to the Terms and Conditions
+                        </label>
 
-        <label>Password:</label>
-        <input type="password" name="password">
-        <span class="error">* <?php echo $errPassword; ?></span>
-        <br><br>
+                    </fieldset>
 
-        <button type="submit" name="register">Register</button>
-    </form>
+
+                    <!-- Button -->
+
+                    <button type="submit" name="register" class="contrast">Sign up</button>
+
+
+                    <!-- <button type="submit" class="contrast" onclick="event.preventDefault()">Login</button> -->
+                </form>
+
+                <!-- Button -->
+                <div class="contianer">
+                    <small> Have an account?</small>
+                    &nbsp; &nbsp;
+                    <a href="login.php" role="button" class="outline">Login</a>
+                </div>
+            </div>
+            <div></div>
+        </article>
+    </main><!-- ./ Main -->
+
+    <!-- Footer -->
+
+    <!-- ./ Footer -->
+
+    <!-- Minimal theme switcher -->
+
+    <script>
+        function gotologin() {
+            location.href = "login.php";
+        }
+    </script>
 
 </body>
 
