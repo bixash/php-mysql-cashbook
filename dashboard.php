@@ -62,6 +62,35 @@ $calTotal = $calcuate_array[0];
     <label class="error"><?php echo $errInfo; ?></label>
     <form action="" method="post">
         
+<!-- 
+        <button type="submit">Select</button>
+        <select name="category">
+            <option value="None" selected hidden>Category</option> //disabled
+            <option value="None">None</option> //disabled
+            <option value="Personal">Personal</option>
+            <option value="Salary">Salary</option>
+            <option value="Food">Food</option>
+            <option value="Rent">Rent</option>
+            <option value="Bonus">Bonus</option>
+            <option value="Health">Health</option>
+            <option value="Commute">Commute</option>
+            
+        </select>
+
+        <select name="mode">
+            <option value="None" selected hidden>Mode</option> //disabled
+            <option value="None">None</option> //disabled
+            <option value="Cash"><a href="dashbook.php">Cash</a></option>
+            <option value="Online">Online</option>
+        </select>
+
+        <select name="type">
+            <option value="None" selected hidden>Type</option> //disabled
+            <option value="None">None</option> //disabled
+            <option value="in"><a href="dashbook.php">Cash In</a></option>
+            <option value="out">Cash Out</option>
+        </select> -->
+
         <div>
             <label name="totalCashIn">Cash In: <?php echo $calCashIn; ?></label>
             <br>
@@ -77,6 +106,8 @@ $calTotal = $calcuate_array[0];
 
         <table>
             <?php
+            $query = "SELECT * FROM `transaction` where `book_id` = $book_id";
+            $result = mysqli_query($con, $query);
             if (mysqli_num_rows($result) > 0) {
 
                 echo '<thead>
@@ -92,7 +123,10 @@ $calTotal = $calcuate_array[0];
                     </tr>
                 </thead> ';
             } else {
-                echo '<div>Oops, No transaction yet!</div>';
+                echo '
+                <div>
+                    Oops, No transaction yet!
+                </div>';
             }
 
             ?>
@@ -101,6 +135,7 @@ $calTotal = $calcuate_array[0];
             
                 <?php
                 $query = "SELECT * FROM `transaction` WHERE `book_id` = $book_id ORDER BY `transaction`.`date` DESC";
+                
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0) {

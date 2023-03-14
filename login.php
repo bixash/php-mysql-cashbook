@@ -4,6 +4,8 @@ include "config.php";
 
 session_start();
 
+// $msg = "";
+
 // $msg = $_GET['msg'];
 
 
@@ -75,12 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         CashBook is a digital record-keeping app using which you can add entries, segregate records and find overall balance instantly.
     </p>
 
-    <ul>
+    <!-- <ul>
         <li>Real-time Calculations</li>
         <li> Group Cashbooks</li>
         <li> Multiple Books</li>
         <li>PDF and Excel Reports</li>
-    </ul>
+    </ul> -->
 
     <h2>Log In & Register</h2>
 
@@ -108,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <br><br>
 
+        
 
     </form>
 
