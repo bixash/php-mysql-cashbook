@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS.">
 
     <!-- Pico.css -->
-    <link rel="stylesheet" href="css/pico.min.css">
+    <!-- <link rel="stylesheet" href="css/pico.min.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 
     <!-- Custom styles for this example -->

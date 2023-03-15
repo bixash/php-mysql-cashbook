@@ -50,62 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
 
     <label class="error"><?php echo $errInfo; ?></label>
-    <form action="" method="post">
-
-        <!-- <button id="btnAddbook"><a href="addbook.php">Add new book</a></button> -->
-        <button id="btnAddBook">Add new book</button>
-
-        <span id="doc"></span>
-
-        <div>
-            <?php
-            $query = "SELECT * FROM `books` where `uid` = $uid";
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $book_id = $row['book_id'];
-                    $bname = $row['bname'];
-
-                    $calcuate_array = calculate_total($con, $book_id);
-                    $calTotal = $calcuate_array[0];
-
-                    echo '
-                <div class="btnBooks">
-                   
-                    <a href="dashboard.php?book_id='  . $book_id . '">' . $bname . ' </a>
-                    <label name="totalBalance">' . $calTotal . '</label>
-                    
-                </div>
-                ';
-                }
-            } else {
-                echo '<div>Oops, No books yet!</div>';
-            }
-            ?>
-        </div>
-
-    </form>
-
-</body>
-
-<script>
-    btnAddBook = document.getElementById('btnAddBook');
-    btnBooks = document.getElementsByClassName('btnBooks');
 
 
-    btnAddBook.addEventListener('click', function() {
-       
-
-        document.querySelector('#doc').innerHTML = ` 
-        <div id="addBook">
-           
+    <!-- <button id="btnAddbook"><a href="addbook.php">Add new book</a></button> -->
+    <button id="btnAddBook">Add new book</button>
+    <div id="overlay">
+        <div class="modal">
             <div>
                 <h2>Add New Book</h2>
-                <button><a href="dashbook.php">X</a></button>
+                <button id="closeBtn">&times;</button>
             </div>
-            
 
             <form method="post">
 
@@ -117,10 +71,59 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <br><br>
                 <button type="submit" name="addbook">Save</button>
             </form>
-            </div>
-            `
+            <!-- <div id="overlay"></div> -->
+        </div>
+    </div>
 
+
+    <div>
+        <?php
+        $query = "SELECT * FROM `books` where `uid` = $uid";
+        $result = mysqli_query($con, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $book_id = $row['book_id'];
+                $bname = $row['bname'];
+
+                $calcuate_array = calculate_total($con, $book_id);
+                $calTotal = $calcuate_array[0];
+
+                echo '
+                <div class="btnBooks">
+                   
+                    <a href="dashboard.php?book_id='  . $book_id . '">' . $bname . ' </a>
+                    <label name="totalBalance">' . $calTotal . '</label>
+                    
+                </div>
+                ';
+            }
+        } else {
+            echo '<div>Oops, No books yet!</div>';
+        }
+        ?>
+    </div>
+
+
+
+</body>
+
+<script>
+    btnAddBook = document.getElementById('btnAddBook');
+    overlay = document.getElementById('overlay');
+    // btnBooks = document.getElementsByClassName('btnBooks');
+    closeBtn = document.getElementById('closeBtn');
+
+    btnAddBook.addEventListener('click', function() {
+        overlay.classList.add('active');
     });
+
+    closeBtn.addEventListener('click', function() {
+
+        overlay.classList.remove('active');
+    });
+    
 </script>
 
 </html>
