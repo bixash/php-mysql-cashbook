@@ -90,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $calcuate_array = calculate_total($con, $book_id);
                 $calTotal = $calcuate_array[0];
 
+
+
                 echo '
-                <div class="btnBooks">
+                <div class="btnBooks" onclick="gotodash('  . $book_id . ')">
                    
                     <a href="dashboard.php?book_id='  . $book_id . '">' . $bname . ' </a>
                     <label name="totalBalance">' . $calTotal . '</label>
@@ -112,8 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <script>
     btnAddBook = document.getElementById('btnAddBook');
     overlay = document.getElementById('overlay');
-    // btnBooks = document.getElementsByClassName('btnBooks');
+    btnBooks = document.getElementsByClassName('btnBooks');
     closeBtn = document.getElementById('closeBtn');
+
+    function gotodash(book_id) {
+
+        location.href = "dashboard.php?book_id="+book_id+"";
+    }
 
     btnAddBook.addEventListener('click', function() {
         overlay.classList.add('active');
@@ -123,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         overlay.classList.remove('active');
     });
-    
 </script>
 
 </html>
