@@ -36,18 +36,29 @@ $calTotal = $calcuate_array[0];
 
 <head>
     <!-- <link rel="stylesheet" href="./book.css"> -->
+    <script src="https://kit.fontawesome.com/e472e10c6d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
     <link rel="stylesheet" href="./assets/dashboard.css">
     <title>Dashboard</title>
 </head>
 
 <body>
 
-    <div>
-        <h1><?php echo $bname; ?></h1>
-        <button><a href="delbook.php?book_id=<?php echo $book_id; ?>">Delete</a></button>
+    <div class="dash-header">
+        <div class="dash-head">
+            <button><a href="dashbook.php"><i class="fa-solid fa-arrow-left"></i></a></button>
+            <h1><?php echo $bname; ?></h1>
+        </div>
 
-        <button><a href="dashbook.php">Back</a></button>
-        <button><a href="logout.php">Logout</a></button>
+        <div id="settingBtn">
+            <button><i class="fa-sharp fa-solid fa-gear"></i></button>
+        </div>
+        <!-- <div class="toggleButtons">
+            <button><a href="delbook.php?book_id=<?php echo $book_id; ?>">Delete</a></button>
+            <button><a href="logout.php">Logout</a></button>
+        </div> -->
+
     </div>
 
     <label class="error"><?php echo $errInfo; ?></label>
@@ -58,13 +69,24 @@ $calTotal = $calcuate_array[0];
             <button><a href="addentry.php?cash=out">Cash Out</a></button>
         </div>
         <div class="balance-info">
-            <div name="totalCashIn">Cash In<div><?php echo $calCashIn; ?></div>
+            <div class="balance-cash" name="totalCashIn">
+
+                <i class="fa-solid fa-circle-plus"></i>
+                <div>Cash In
+                    <div><?php echo $calCashIn; ?></div>
+                </div>
             </div>
 
-            <div name="totalCashOut">Cash Out<div><?php echo $calCashOut; ?></div>
+            <div class="balance-cash" name="totalCashOut">
+                <i class="fa-solid fa-circle-minus"></i>
+                Cash Out
+                <div><?php echo $calCashOut; ?></div>
             </div>
 
-            <div name="totalBalance">Net Balance<div> <?php echo $calTotal; ?></div>
+            <div class="balance-cash" name="totalBalance">
+                <i class="uil uil-equal-circle"></i>
+                Net Balance
+                <div> <?php echo $calTotal; ?></div>
             </div>
         </div>
 
@@ -123,8 +145,8 @@ $calTotal = $calcuate_array[0];
                                 <div class="amount">' . $amount . '</div>
                                 <div class="type">' . $type . '</div>
                                 <div class="update-delete">
-                                    <button><a href="editentry.php?update_id=' . $tid . '">Edit</a></button>
-                                    <button><a href="delentry.php?delete_id=' . $tid . '"> Delete </a></button>
+                                    <button><a href="editentry.php?update_id=' . $tid . '"><i class="fa-regular fa-pen-to-square"></i></a></button>
+                                    <button><a href="delentry.php?delete_id=' . $tid . '"><i class="fa-solid fa-trash"></i> </a></button>
                                 </div>
                             </div>                     
                         <div>
@@ -142,7 +164,15 @@ $calTotal = $calcuate_array[0];
 
 </body>
 
-<script></script>
+<script>
+    settingBtn = document.getElementById('settingBtn');
+
+    settingBtn.addEventlistener('click', function() {
+
+
+
+    });
+</script>
 
 
 </html>

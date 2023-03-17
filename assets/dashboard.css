@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+.dash-header {
+    padding: 1em;
+}
+ .dash-head, .dash-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+ }
+
 .balance-info{
     padding: 0.5em;
     margin: 1em 1em 0em 1em;
@@ -14,7 +24,7 @@
     justify-content: space-between;
 
 }
-.balance-info >div {
+.balance-info > div {
     padding-left: 1em;
     border-left: 2px solid #f2f2f2;
     /* background-color: red; */
