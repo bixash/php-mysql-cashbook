@@ -26,12 +26,12 @@ $category = $row['category'];
 $mode = $row['mode'];
 $type = $row['type'];
 
-if($type =="in") 
+if ($type == "in")
     $otherType = "out";
-else 
+else
     $otherType = "in";
-    
-if($mode == "Cash"){
+
+if ($mode == "Cash") {
     $otherMode = "Online";
 } else {
     $otherMode = "Cash";
@@ -67,78 +67,70 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html lang="en" data-theme="light">
 
 <head>
-    <link rel="stylesheet" href="book.css">
+    <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <title>Editbook</title>
 </head>
 
 <body>
+    <main class="container">
+        <h1>Edit Entry</h1>
+        <label class="error"><?php echo $errInfo; ?></label>
+        <form action="" method="post">
+            <div>
+                <input type="radio" name="type" value="<?php echo $type ?>" checked><?php echo 'Cash ' . $type ?>
+                <input type="radio" name="type" value="<?php echo $otherType ?>"><?php echo 'Cash ' . $otherType ?>
+                <span class="error"><?php echo $errType; ?></span>
+            </div>
 
-    <h1>Edit Entry</h1>
-    <label class="error"><?php echo $errInfo; ?></label>
-    <form action="" method="post">
+            <label>Date: <span class="error">* <?php echo $errDate; ?></span></label>
+            <input type="date" name="date" value="<?php echo $date ?>" required>
 
-        
-        <input type="radio" name="type" value="<?php echo $type ?>"checked><?php echo'Cash '.$type ?>
-        <input type="radio" name="type" value="<?php echo $otherType ?>"><?php echo'Cash '.$otherType ?>
-        <span class="error">* <?php echo $errType; ?></span>
-        <br> <br>
+            <label>Amount <span class="error">* <?php echo $errAmount; ?></span> </label>
+            <input type="number" name="amount" value="<?php echo $amount ?>">
 
-        <label>Date: </label>
-        <input type="date" name="date" value="<?php echo $date ?>" required>
-        <span class="error">* <?php echo $errDate; ?></span>
-        <br> <br>
-
-
-        <label>Amount: </label>
-        <input type="number" name="amount" value="<?php echo $amount ?>">
-        <span class="error">* <?php echo $errAmount; ?></span>
-        <br> <br>
+            <label>Remarks</label>
+            <input type="text" name="remarks" value="<?php echo $remarks ?>" required>
 
 
-        <label>Remarks:</label>
-        <input type="text" name="remarks" value="<?php echo $remarks ?>" required>
-        <br> <br>
 
-        
-        <label>Category:</label>
-        <select name="category" >
-            <option value="<?php echo $category ?>"><?php echo $category ?></option>
-            <?php
-            $query = "SELECT DISTINCT category FROM `transaction`";
-            $result = mysqli_query($con, $query);
+            <label>Category</label>
+            <select name="category">
+                <option value="<?php echo $category ?>"><?php echo $category ?></option>
+                <?php
+                $query = "SELECT DISTINCT category FROM `transaction`";
+                $result = mysqli_query($con, $query);
 
-            if (mysqli_num_rows($result) > 0) {
-                while ($optionData = mysqli_fetch_assoc($result)) {
-                    $option = $optionData['category'];
-                    if($category != $option && $option != "")
-                        echo '<option value="'.$option.'"> '.$option.' </option>';
-
+                if (mysqli_num_rows($result) > 0) {
+                    while ($optionData = mysqli_fetch_assoc($result)) {
+                        $option = $optionData['category'];
+                        if ($category != $option && $option != "")
+                            echo '<option value="' . $option . '"> ' . $option . ' </option>';
+                    }
                 }
-            }
-            ?>
-           
-        </select>
-        <br><br>
+                ?>
+
+            </select>
 
 
 
-        <label>Payment Mode</label>
-        <select name="mode">
-            <option value="<?php echo $mode ?>"><?php echo $mode ?></option>
-            <option value="<?php echo $otherMode ?>"><?php echo $otherMode ?></option>
-            
-        </select>
-        <span class="error">* <?php echo $errMode; ?></span>
-        <br> <br>
+
+            <label>Payment Mode <span class="error">* <?php echo $errMode; ?></span></label>
+            <select name="mode">
+                <option value="<?php echo $mode ?>"><?php echo $mode ?></option>
+                <option value="<?php echo $otherMode ?>"><?php echo $otherMode ?></option>
+
+            </select>
 
 
-        <button type="submit" name="update">Save</button>
-        <button><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
-        <br> <br>
 
-    </form>
 
+            <button type="submit" name="update">Save</button>
+            <button class="contrast"><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
+
+
+        </form>
+    </main>
 </body>
 
 </html>

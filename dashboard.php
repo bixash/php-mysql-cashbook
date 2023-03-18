@@ -45,74 +45,77 @@ $calTotal = $calcuate_array[0];
 </head>
 
 <body>
+    <main class="container">
 
-    <div class="dash-header">
-        <div class="dash-head">
-            <button class="button back"><a href="dashbook.php"><i class="fa-solid fa-arrow-left"></i></a></button>
-            <h2><?php echo $bname; ?></h2>
-        </div>
 
-        <div id="settingBtn">
-            <button><i class="fa-sharp fa-solid fa-gear"></i></button>
-        </div>
-        <!-- <div class="toggleButtons">
+
+        <div class="dash-header">
+            <div class="dash-head">
+                <button class="button back"><a href="dashbook.php"><i class="fa-solid fa-arrow-left"></i></a></button>
+                <h2><?php echo $bname; ?></h2>
+            </div>
+
+            <div id="settingBtn">
+                <button><i class="fa-sharp fa-solid fa-gear"></i></button>
+            </div>
+            <!-- <div class="toggleButtons">
             <button><a href="delbook.php?book_id=<?php echo $book_id; ?>">Delete</a></button>
             <button><a href="logout.php">Logout</a></button>
         </div> -->
 
-    </div>
-
-
-    <label class="error"><?php echo $errInfo; ?></label>
-    <div class="balance-entry">
-
-
-        <div class="button-search">
-            <div class="search">
-                <input type="text">
-            </div>
-            <div class="inout-button">
-                <button class="button cashin"><a href="addentry.php?cash=in">Cash In</a></button>
-                <button class="button cashout"><a href="addentry.php?cash=out">Cash Out</a></button>
-            </div>
-
         </div>
-        <div class="balance-info">
-            <div class="balance-cash" name="totalCashIn">
 
-                <i class="fa-solid fa-circle-plus"></i>
-                <div class="inner">
-                    <div>Cash In</div>
-                    <div><?php echo $calCashIn; ?></div>
+
+        <label class="error"><?php echo $errInfo; ?></label>
+        <div class="balance-entry">
+
+
+            <div class="button-search">
+                <div class="search">
+                    <input type="text">
                 </div>
-            </div>
-
-            <div class="balance-cash" name="totalCashOut">
-                <i class="fa-solid fa-circle-minus"></i>
-                <div class="inner">
-                    <div>Cash Out</div>
-                    <div><?php echo $calCashOut; ?></div>
+                <div class="inout-button">
+                    <button class="button cashin"><a href="addentry.php?cash=in">Cash In</a></button>
+                    <button class="button cashout"><a href="addentry.php?cash=out">Cash Out</a></button>
                 </div>
-            </div>
 
-            <div class="balance-cash" name="totalBalance">
-                <i class="uil uil-equal-circle"></i>
-                <div class="inner">
-                    <div>Net Balance</div>
-                    <div> <?php echo $calTotal; ?></div>
+            </div>
+            <div class="balance-info">
+                <div class="balance-cash" name="totalCashIn">
+
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <div class="inner">
+                        <div>Cash In</div>
+                        <div><?php echo $calCashIn; ?></div>
+                    </div>
+                </div>
+
+                <div class="balance-cash" name="totalCashOut">
+                    <i class="fa-solid fa-circle-minus"></i>
+                    <div class="inner">
+                        <div>Cash Out</div>
+                        <div><?php echo $calCashOut; ?></div>
+                    </div>
+                </div>
+
+                <div class="balance-cash" name="totalBalance">
+                    <i class="uil uil-equal-circle"></i>
+                    <div class="inner">
+                        <div>Net Balance</div>
+                        <div> <?php echo $calTotal; ?></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <form action="" method="post">
+        <form action="" method="post">
 
-        <div class="dash-container">
-            <?php
-            $query = "SELECT * FROM `transaction` where `book_id` = $book_id";
-            $result = mysqli_query($con, $query);
-            if (mysqli_num_rows($result) > 0) {
+            <div class="dash-container">
+                <?php
+                $query = "SELECT * FROM `transaction` where `book_id` = $book_id";
+                $result = mysqli_query($con, $query);
+                if (mysqli_num_rows($result) > 0) {
 
-                echo '<div class="thead">
+                    echo '<div class="thead">
                        
                     <div>Date</div>
                     <div>Details</div>
@@ -121,34 +124,34 @@ $calTotal = $calcuate_array[0];
                     <div>Amount</div>
                     <div>Type</div>
                 </div> ';
-            } else {
-                echo '
+                } else {
+                    echo '
                 <div>
                     Oops, No transaction yet!
                 </div>';
-            }
+                }
 
-            ?>
+                ?>
 
-            <div class="tbody">
+                <div class="tbody">
 
-                <?php
-                $query = "SELECT * FROM `transaction` WHERE `book_id` = $book_id ORDER BY `transaction`.`date` DESC";
+                    <?php
+                    $query = "SELECT * FROM `transaction` WHERE `book_id` = $book_id ORDER BY `transaction`.`date` DESC";
 
-                $result = mysqli_query($con, $query);
+                    $result = mysqli_query($con, $query);
 
-                if (mysqli_num_rows($result) > 0) {
+                    if (mysqli_num_rows($result) > 0) {
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $tid = $row['tid'];
-                        $date = $row['date'];
-                        $remarks = $row['remarks'];
-                        $amount = $row['amount'];
-                        $category = $row['category'];
-                        $mode = $row['mode'];
-                        $type = $row['type'];
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $tid = $row['tid'];
+                            $date = $row['date'];
+                            $remarks = $row['remarks'];
+                            $amount = $row['amount'];
+                            $category = $row['category'];
+                            $mode = $row['mode'];
+                            $type = $row['type'];
 
-                        echo ' 
+                            echo ' 
                         <main>
                         <div class="transaction ' . $tid . '">
                             <div class="trans-container">
@@ -165,17 +168,17 @@ $calTotal = $calcuate_array[0];
                             </div>                     
                         <div>
                         </main>';
+                        }
+                    } else {
+                        $errInfo = "Oops, No transaction yet!";
                     }
-                } else {
-                    $errInfo = "Oops, No transaction yet!";
-                }
-                ?>
+                    ?>
+                </div>
+
             </div>
 
-        </div>
-
-    </form>
-
+        </form>
+    </main>
 </body>
 
 <script>

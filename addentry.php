@@ -57,64 +57,63 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 ?>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <link rel="stylesheet" href="book.css">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 
 </head>
 
 <body>
+    <main class="container">
+        <h1>Add Cash <?php echo $type ?> Entry</h1>
 
-    <h1>Add Cash <?php echo $type ?> Entry</h1>
+        <label class="error"><?php echo $errInfo; ?></label>
 
-    <label class="error"><?php echo $errInfo; ?></label>
+        <form action="" method="post">
 
-    <form action="" method="post">
-
-        <label>Date: </label>
-        <input type="date" name="date">
-        <span class="error">* <?php echo $errDate; ?></span>
-        <br><br>
-
-        <label>Amount: </label>
-        <input type="number" name="amount">
-        <span class="error">* <?php echo $errAmount; ?></span>
-        <br><br>
-
-        <label>Remarks: </label>
-        <input type="text" name="remarks">
-        <br><br>
+            <label>Date: <span class="error">* <?php echo $errDate; ?></span></label>
+            <input type="date" name="date">
 
 
-        <label>Category:</label>
-        <select name="category">
-            <option value="None" selected hidden>Select any</option> //disabled
-            <option value="Personal">Personal</option>
-            <option value="Salary">Salary</option>
-            <option value="Food">Food</option>
-            <option value="Rent">Rent</option>
-            <option value="Bonus">Bonus</option>
-            <option value="Health">Health</option>
-            <option value="Commute">Commute</option>
-            
-        </select>
-        <br><br>
 
-        <label>Mode</label>
-        <select name="mode">
-            <option value="Cash">Cash </option>
-            <option value="Online">Online</option>
-        </select>
-        <span class="error">* <?php echo $errMode; ?></span>
-        <br><br>
+            <label>Amount: <span class="error">* <?php echo $errAmount; ?></span></label>
+            <input type="number" name="amount">
 
-        <button type="submit">Save</button>
-        <button><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
-        <br><br>
 
-    </form>
 
+            <label>Remarks: </label>
+            <input type="text" name="remarks">
+
+            <label>Category:</label>
+            <select name="category">
+                <option value="None" selected hidden>Select any</option> //disabled
+                <option value="Personal">Personal</option>
+                <option value="Salary">Salary</option>
+                <option value="Food">Food</option>
+                <option value="Rent">Rent</option>
+                <option value="Bonus">Bonus</option>
+                <option value="Health">Health</option>
+                <option value="Commute">Commute</option>
+
+            </select>
+
+
+            <label>Mode <span class="error">* <?php echo $errMode; ?></span></label>
+            <select name="mode">
+                <option value="Cash">Cash </option>
+                <option value="Online">Online</option>
+            </select>
+
+
+
+            <button type="submit">Save</button>
+            <button class="contrast"><a href="dashboard.php?book_id=<?php echo $bid; ?>">Cancel</a></button>
+
+
+        </form>
+    </main>
 </body>
 
 </html>

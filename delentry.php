@@ -52,22 +52,25 @@ if (isset($_GET['delete_id'])) {
 </head>
 
 <body>
+    <main class="container">
     <form method="post">
-
+        
         <h3>Once deleted, this transaction cannot be restored.
             <br>Are you sure you want to Delete ?
         </h3>
-        <label><b>Review details:</b></label><br>
-        <label>Date: <?php echo $date ?> </label> <br>
-        <label>Amount: <?php echo $amount ?></label> <br>
-        <label>Remarks: <?php echo $remarks ?></label> <br>
-        <label>Type: Cash <?php echo $type ?></label> <br>
+        <label><b>Review details:</b></label>
+        <label>Date: <?php echo $date ?> </label>
+        <label>Amount: <?php echo $amount ?></label>
+        <label>Remarks: <?php echo $remarks ?></label>
+        <label>Type: Cash <?php echo $type ?></label>
         <div>
             <button type="submit" name="no">Cancel </button>
             <button type="submit" name="yes">Yes, Delete </button>
         </div>
 
     </form>
+    </main>
+    
 </body>
 
 </html>
