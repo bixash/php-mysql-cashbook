@@ -32,10 +32,11 @@ $calTotal = $calcuate_array[0];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <!-- <link rel="stylesheet" href="./book.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <script src="https://kit.fontawesome.com/e472e10c6d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -47,8 +48,8 @@ $calTotal = $calcuate_array[0];
 
     <div class="dash-header">
         <div class="dash-head">
-            <button><a href="dashbook.php"><i class="fa-solid fa-arrow-left"></i></a></button>
-            <h1><?php echo $bname; ?></h1>
+            <button class="button back"><a href="dashbook.php"><i class="fa-solid fa-arrow-left"></i></a></button>
+            <h2><?php echo $bname; ?></h2>
         </div>
 
         <div id="settingBtn">
@@ -61,36 +62,49 @@ $calTotal = $calcuate_array[0];
 
     </div>
 
-    <label class="error"><?php echo $errInfo; ?></label>
-    <form action="" method="post">
 
-        <div class="button-container">
-            <button><a href="addentry.php?cash=in">Cash In</a></button>
-            <button><a href="addentry.php?cash=out">Cash Out</a></button>
+    <label class="error"><?php echo $errInfo; ?></label>
+    <div class="balance-entry">
+
+
+        <div class="button-search">
+            <div class="search">
+                <input type="text">
+            </div>
+            <div class="inout-button">
+                <button class="button cashin"><a href="addentry.php?cash=in">Cash In</a></button>
+                <button class="button cashout"><a href="addentry.php?cash=out">Cash Out</a></button>
+            </div>
+
         </div>
         <div class="balance-info">
             <div class="balance-cash" name="totalCashIn">
 
                 <i class="fa-solid fa-circle-plus"></i>
-                <div>Cash In
+                <div class="inner">
+                    <div>Cash In</div>
                     <div><?php echo $calCashIn; ?></div>
                 </div>
             </div>
 
             <div class="balance-cash" name="totalCashOut">
                 <i class="fa-solid fa-circle-minus"></i>
-                Cash Out
-                <div><?php echo $calCashOut; ?></div>
+                <div class="inner">
+                    <div>Cash Out</div>
+                    <div><?php echo $calCashOut; ?></div>
+                </div>
             </div>
 
             <div class="balance-cash" name="totalBalance">
                 <i class="uil uil-equal-circle"></i>
-                Net Balance
-                <div> <?php echo $calTotal; ?></div>
+                <div class="inner">
+                    <div>Net Balance</div>
+                    <div> <?php echo $calTotal; ?></div>
+                </div>
             </div>
         </div>
-
-
+    </div>
+    <form action="" method="post">
 
         <div class="dash-container">
             <?php
@@ -145,8 +159,8 @@ $calTotal = $calcuate_array[0];
                                 <div class="amount">' . $amount . '</div>
                                 <div class="type">' . $type . '</div>
                                 <div class="update-delete">
-                                    <button><a href="editentry.php?update_id=' . $tid . '"><i class="fa-regular fa-pen-to-square"></i></a></button>
-                                    <button><a href="delentry.php?delete_id=' . $tid . '"><i class="fa-solid fa-trash"></i> </a></button>
+                                    <a class="button update"role="button" href="editentry.php?update_id=' . $tid . '"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a class="button delete" role="button"href="delentry.php?delete_id=' . $tid . '"><i class="fa-solid fa-trash"></i> </a>
                                 </div>
                             </div>                     
                         <div>

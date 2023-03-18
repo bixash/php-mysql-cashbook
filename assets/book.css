@@ -12,11 +12,6 @@ a {
     
 }
 
-h2{
-    /* color: red; */
-    width: fit-content;
-    
-}
 
 .btnBooks {
     display: flex;
@@ -34,31 +29,51 @@ h2{
 
 
 .dash-head {
+    /* background: red; */
+    margin: 0 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-
-.dash-head button {
+h1{
+    padding-top: 1em;
     /* background-color: red; */
-    margin-right: 1em;
+}
+
+.logout {
+    width: 6em;
+}
+/* .dash-head {
+    background-color: red;
+ 
     height: 35px;
     padding: 0.7em;
     border-radius: 0.5em;
+} */
+
+.addbutton {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0 1em;
+}
+
+#btnAddBook {
+    width: 10em;
+  
+    /* float:left; */
 }
 
 .dash-head button a {
     
-    color: rgb(59, 54, 54);
+    color: white;
 }
-
+/* 
 button {
 
     border: 1px solid #f2f2f2;
-}
+} */
 
-form button {
+/* form button {
     background-color: green; 
     padding: 0.7em;
     border-radius: 0.5em;
@@ -67,13 +82,17 @@ form button {
 form button a {
     
     color: white;
-}
+} */
 
 
 .modal div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.button {
+    width: fit-content;
 }
 
 #overlay {
@@ -87,7 +106,7 @@ form button a {
     background-color: rgba(0, 0, 0,.5);
     pointer-events: none;
     
-    /* background-color: white; */
+   
 }
 
 #overlay.active {
@@ -104,9 +123,10 @@ form button a {
     margin: auto;
     background-color: white;
     z-index: 10;
-    padding: 1em;
-    height: 15em;
-    width: 30em;
+    padding: 1.5em;
+    height: 60%;
+    width: 60%;
+    border-radius: 1em;
 }
 
 /* #overlay {

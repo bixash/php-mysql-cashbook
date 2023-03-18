@@ -45,23 +45,27 @@ if (isset($_GET['delete_id'])) {
 
 ?>
 
-<html>
+<html data-theme="light">
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+</head>
 
 <body>
     <form method="post">
 
-            <h3>Once deleted, this transaction cannot be restored.
-                <br>Are you sure you want to Delete ?
-            </h3>
-            <label><b>Review details:</b></label><br>
-            <label>Date: <?php echo $date ?> </label> <br>
-            <label>Amount: <?php echo $amount ?></label> <br>
-            <label>Remarks: <?php echo $remarks ?></label> <br>
-            <label>Type: Cash <?php echo $type ?></label> <br>
-            <div>
-                <button type="submit" name="no">Cancel </button>
-                <button type="submit" name="yes">Yes, Delete </button>
-            </div>
+        <h3>Once deleted, this transaction cannot be restored.
+            <br>Are you sure you want to Delete ?
+        </h3>
+        <label><b>Review details:</b></label><br>
+        <label>Date: <?php echo $date ?> </label> <br>
+        <label>Amount: <?php echo $amount ?></label> <br>
+        <label>Remarks: <?php echo $remarks ?></label> <br>
+        <label>Type: Cash <?php echo $type ?></label> <br>
+        <div>
+            <button type="submit" name="no">Cancel </button>
+            <button type="submit" name="yes">Yes, Delete </button>
+        </div>
 
     </form>
 </body>

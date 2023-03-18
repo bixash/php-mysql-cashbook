@@ -5,13 +5,35 @@
 }
 
 .dash-header {
-    padding: 1em;
+    padding:  0 1em;
+    /* background: green; */
 }
  .dash-head, .dash-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+ }
+
+ .dash-head {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    /* background: red; */
+    align-items: center;
+    width: 10em;
+ }
+
+ h2 {
+    margin-top: 1em;
+    margin-left: 0.5em;
+    text-align: center;
+    /* background-color: green; */
+ }
+
+
+ .fa-arrow-left {
+    color: white;
  }
 
 .balance-info{
@@ -31,11 +53,68 @@
     width: 100%;
 }
 
-
-.button-container {
+.balance-cash {
     display: flex;
-    flex-direction: row-reverse;
+    /* justify-content: space-evenly; */
     align-items: center;
+}
+
+.inner {
+    margin-left: 1em;
+}
+.button-search {
+    margin: 1em;
+}
+
+.fa-circle-plus,.fa-circle-minus {
+    font-size: 22px;
+    color: green;
+}
+.fa-circle-minus {
+ 
+    color: red;
+}
+.uil-equal-circle {
+    font-size: 24px;
+    color: blue;
+}
+
+.button-search{
+    display: flex;
+    /* background-color: aqua; */
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.search {
+    width: 60%;
+}
+
+.inout-button {
+    display: flex;
+    /* background-color: red; */
+    justify-content: space-evenly;
+    width: 40%;
+}
+
+.button a {
+    text-decoration: none;
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+.button {
+    border: none;
+    border-radius: 0.5em;
+    width: 7em;
+    padding: 0.5em 0.5em;
+}
+.cashin {
+    background-color: green;
+}
+.cashout {
+    background: red;
 }
 
 .dash-container {
@@ -79,4 +158,12 @@
     /* height: 20px; */
     /* width: 90%; */
 }
+.update-delete {
+    display: flex;
+    justify-content: space-evenly;
 
+}
+
+.update, .delete {
+    width: 3em;
+}

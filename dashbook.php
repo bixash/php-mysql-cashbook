@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <link rel="stylesheet" href="./assets/book.css">
     <link rel="stylesheet" href="./assets/style.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <title>Dashboard</title>
 
 </head>
@@ -46,29 +46,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <div class="dash-head">
         <h1><?php echo $name; ?>'s books</h1>
-        <button><a href="logout.php">Logout</a></button>
+        <button class="logout"><a href="logout.php">Logout</a></button>
     </div>
 
     <label class="error"><?php echo $errInfo; ?></label>
 
 
     <!-- <button id="btnAddbook"><a href="addbook.php">Add new book</a></button> -->
-    <button id="btnAddBook">Add new book</button>
+    <div class="addbutton">
+        <button class="contrast" id="btnAddBook">Add new book</button>
+    </div>
+
     <div id="overlay">
         <div class="modal">
             <div>
-                <h2>Add New Book</h2>
-                <button id="closeBtn">&times;</button>
+                <h3>Add New Book</h3>
+                <button class="button" id="closeBtn">&times;</button>
             </div>
 
             <form method="post">
 
                 <label><?php echo $errInfo; ?></label>
-
                 <label for="">Book Name</label>
-                <br>
                 <input type="text" name="bname" required />
-                <br><br>
                 <button type="submit" name="addbook">Save</button>
             </form>
             <!-- <div id="overlay"></div> -->
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     function gotodash(book_id) {
 
-        location.href = "dashboard.php?book_id="+book_id+"";
+        location.href = "dashboard.php?book_id=" + book_id + "";
     }
 
     btnAddBook.addEventListener('click', function() {
